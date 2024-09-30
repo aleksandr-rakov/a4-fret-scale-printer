@@ -1,0 +1,108 @@
+<html>
+<head>
+    <title>A4 Fretscale printer</title>
+</head>
+<body>
+
+<form id="form">
+    <label> 
+        num_frets
+        <input id="ifrets" value="24">
+    </label>
+    <label>
+        scale
+        <input id="iscale" value="628.7">
+        mm
+    </label>
+    <input type="submit">
+</form>
+
+<table class="mtable">
+    <tr>
+        <td>
+            <table id="frets1" class="frets">
+            </table>
+        </td>
+        <td>
+            <table id="frets2" class="frets">
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+<script>
+
+const form = document.getElementById("form");
+form.addEventListener("submit", submit);
+
+function submit(e) {
+    if (e){
+        e.preventDefault();    
+    }
+
+
+    var menzura=parseFloat(document.getElementById('iscale').value)
+    manzura=647.7
+    var frets=parseInt(document.getElementById('ifrets').value,10)
+    var last=0
+    var ff=17.817154
+    var trs1=[
+        '<tr><td style="height: 0"></td></tr>',
+    ]
+    var trs2=[
+        '<tr><td style="height: 0"></td></tr>',
+    ]
+    var add_to=trs1
+
+    for (var i = 1; i <= frets; i++) {
+        var ffp=menzura/ff
+        console.log(i, last+ffp)
+        last=last+ffp
+        menzura-=ffp
+        var s_add=`<tr><td style="height: ${ffp}mm"><span>${i} - ${ffp.toFixed(3)} - ${last.toFixed(3)}</span></td></tr>`
+        add_to.push(s_add)
+
+        if(last>297-50){
+            if(add_to!=trs2){
+                trs2.push(s_add)
+            }
+            add_to=trs2
+        }
+    }
+    document.getElementById('frets1').innerHTML=trs1.join('')
+    document.getElementById('frets2').innerHTML=trs2.join('')
+
+    return false
+}
+submit()
+
+</script>
+<style>
+table {
+    border: 0;
+}
+form{
+    margin: 0
+}
+.mtable td{
+    vertical-align: top;
+}
+.frets{
+    font-size: 17px;
+    width: 70mm;
+}
+.frets td{
+    position: relative;
+    border-bottom: 1px #000 solid;
+}
+.frets span{
+    position: absolute;
+}
+</style>
+</body>
+<!--
+    TODO:
+    split to 2 cols
+-->
+</html>
