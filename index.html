@@ -20,11 +20,11 @@
 <table class="mtable">
     <tr>
         <td>
-            <table id="frets1" class="frets">
+            <table id="frets1" class="reset_table frets">
             </table>
         </td>
         <td>
-            <table id="frets2" class="frets">
+            <table id="frets2" class="reset_table frets">
             </table>
         </td>
     </tr>
@@ -78,8 +78,22 @@ submit()
 
 </script>
 <style>
-table {
-    border: 0;
+.reset_table, 
+.reset_table table tr,
+.reset_table tr td,
+.reset_table table tbody,
+.reset_table table thead,
+.reset_table table tfoot,
+.reset_table table tr th,
+.reset_table table tfoot tr tf
+{
+    margin:0;
+    padding:0;
+    background:none;
+    border:none;
+    border-collapse:collapse;
+    border-spacing:0;
+    background-image:none;
 }
 form{
     margin: 0
@@ -93,18 +107,15 @@ form{
 }
 .frets td{
     position: relative;
-    border-bottom: 1px #000 solid;
-    border-left: 1px #000 solid;
+    border-bottom: 1px #000 solid !important;
+    border-left: 1px #000 solid !important;
     margin: 0;
     padding: 0;
 }
 .frets span{
     position: absolute;
 }
+
 </style>
 </body>
-<!--
-    TODO:
-    split to 2 cols
--->
 </html>
