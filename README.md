@@ -4,3 +4,6 @@
 
 
 For those who make a guitar. Scale print on A4 sheet with convenient gluing.
+
+
+https://aleksandr-rakov.github.io/a4-fret-scale-printer/
