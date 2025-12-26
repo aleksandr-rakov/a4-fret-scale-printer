@@ -133,6 +133,22 @@ form{
     background-position: 100% 0;
 }
 
+@media print {
+  /* Ensure backgrounds are encouraged to print */
+  .force-print-bg {
+    -webkit-print-color-adjust: exact; /* For Chrome, Safari, Edge (Blink/WebKit) */
+    print-color-adjust: exact;         /* Standard property (Firefox, Opera) */
+    background-color: #ff0000 !important; /* Example color */
+    background-image: url('my-background.png') !important; /* Example image */
+  }
+
+  /* General rule for all elements */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
 </style>
 </body>
 </html>
