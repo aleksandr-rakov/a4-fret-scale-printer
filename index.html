@@ -6,12 +6,16 @@
 
 <form id="form">
     <label> 
+        nut
+        <input id="inut" value="6">
+    </label>
+    <label> 
         num_frets
-        <input id="ifrets" value="24">
+        <input id="ifrets" value="25">
     </label>
     <label>
         scale
-        <input id="iscale" value="628.7" placeholder="628.7 or 647.7 for example">
+        <input id="iscale" value="647.7" placeholder="628.7 or 647.7 for example">
         mm
     </label>
     <input type="submit">
@@ -44,6 +48,7 @@ function submit(e) {
 
     var menzura=parseFloat(document.getElementById('iscale').value)
     var frets=parseInt(document.getElementById('ifrets').value,10)
+    var nut=parseInt(document.getElementById('inut').value,10)
     var last=0
     var ff=17.817154 //https://www.stewmac.com/video-and-ideas/online-resources/learn-about-guitar-and-instrument-fretting-and-fretwork/fret-scale-rule-instructions/#:~:text=The%20%22factor%22%20for%20fret%20spacing,to%20lay%20out%20their%20fretboards.
     var trs1=[
@@ -54,12 +59,16 @@ function submit(e) {
     ]
     var add_to=trs1
 
+    if( nut){
+        add_to.push(`<tr><td style="height: ${nut}mm"><span>Nut -${nut.toFixed(2)}mm</span></td></tr>`)
+    }
+
     for (var i = 1; i <= frets; i++) {
         var ffp=menzura/ff
         console.log(i, last+ffp)
         last=last+ffp
         menzura-=ffp
-        var s_add=`<tr><td style="height: ${ffp}mm"><span>${i} - ${ffp.toFixed(2)} - ${last.toFixed(2)}</span></td></tr>`
+        var s_add=`<tr><td style="height: ${ffp}mm"><span>Fret ${i}  size ${ffp.toFixed(2)}  offet ${last.toFixed(2)}mm</span></td></tr>`
         add_to.push(s_add)
 
         if(last>297-50){
@@ -120,9 +129,8 @@ form{
     --t: 1px;
     --g: 25%;
     --s: 12px;
-    background: conic-gradient(at var(--t), #0000 75%, #000 0) var(--g) / calc(var(--g) + var(--t)) var(--s);
+    background: conic-gradient(at var(--t), #0000 75%, #ccc 0) var(--g) / calc(var(--g) + var(--t)) var(--s);
     background-position: 100% 0;
-    background-color: #ccc;
 }
 
 </style>
