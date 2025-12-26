@@ -59,7 +59,7 @@ function submit(e) {
         console.log(i, last+ffp)
         last=last+ffp
         menzura-=ffp
-        var s_add=`<tr><td style="height: ${ffp}mm"><span>${i} - ${ffp.toFixed(3)} - ${last.toFixed(3)}</span></td></tr>`
+        var s_add=`<tr><td style="height: ${ffp}mm"><span>${i} - ${ffp.toFixed(2)} - ${last.toFixed(2)}</span></td></tr>`
         add_to.push(s_add)
 
         if(last>297-50){
@@ -114,6 +114,15 @@ form{
 }
 .frets span{
     position: absolute;
+}
+
+.frets tr td{
+    --t: 1px;
+    --g: 25%;
+    --s: 12px;
+    background: conic-gradient(at var(--t), #0000 75%, #000 0) var(--g) / calc(var(--g) + var(--t)) var(--s);
+    background-position: 100% 0;
+    background-color: #ccc;
 }
 
 </style>
